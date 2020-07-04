@@ -1,0 +1,20 @@
+{
+    "name": "kielabokkie/laravel-fancy-console",
+    "description": "A trait to give your console commands some extra fancy output",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kielabokkie",
+            "email": "kielabokkie@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kielabokkie\\FancyConsole\\": "src"
+        }
+    }
+}
