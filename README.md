@@ -48,3 +48,7 @@ $this->successBlock('This is a great success');
 
 $this->errorBlock('This is a serious error');
 ```
+
+Which gives you the following output:
+
+<img src="./art/screenshot1.png" width="900" alt="screenshot">
