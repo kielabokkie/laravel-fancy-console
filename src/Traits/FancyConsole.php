@@ -10,9 +10,15 @@ trait FancyConsole
      * @param string $string
      * @return string
      */
-    public function success($string)
+    public function success($string, $text = 'SUCCESS')
     {
-        return $this->info('<fg=black;bg=green> SUCCESS </> ' . $string);
+        return $this->info(
+            sprintf(
+                '<fg=black;bg=green> %s </> %s',
+                $text,
+                $string
+            )
+        );
     }
 
     /**
@@ -21,9 +27,15 @@ trait FancyConsole
      * @param string $string
      * @return string
      */
-    public function fail($string)
+    public function fail($string, $text = 'FAIL')
     {
-        return $this->info('<fg=white;bg=red> FAIL </> ' . $string);
+        return $this->info(
+            sprintf(
+                '<fg=white;bg=red> %s </> <fg=red>%s</>',
+                $text,
+                $string
+            )
+        );
     }
 
     /**
