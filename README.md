@@ -41,8 +41,10 @@ You then have access to the following extra methods:
 
 ```php
 $this->success('Yes, it worked!');
+$this->success('Yes, it worked!', 'OK');
 
 $this->fail('Oh no, it did not work.');
+$this->fail('Oh no, it did not work.', 'BUMMER');
 
 $this->successBlock('This is a great success');
 
