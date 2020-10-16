@@ -37,7 +37,9 @@ class MyCommand extends Command
 }
 ```
 
-You then have access to the following extra methods:
+### Success and fail messages
+
+To make it easier to style success and fail messages you will have access to the following methods:
 
 ```php
 $this->success('Yes, it worked!');
@@ -54,3 +56,44 @@ $this->errorBlock('This is a serious error');
 Which gives you the following output:
 
 <img src="./art/screenshot1.png" width="900" alt="screenshot">
+
+### Loading indicator
+
+Laravel already comes with an easy progress bar but if you want to show progress in a different way you can use the dot loading indicator:
+
+```php
+for ($i = 0; $i < 100; $i++) {
+    $this->dot();
+}
+```
+
+The code above will output 100 dots on the same line. If you want to restrict the number of dots on a line you can set the dot width:
+
+```php
+$this->setDotWidth(40);
+
+for ($i = 0; $i < 100; $i++) {
+    $this->dot();
+}
+```
+
+Now it will jump to the next line once the number of dots reach a multiple of 40.
+
+If you know the total number of loading dots your command will be outputting you can set the total dots and the output will show you the current progress and total per line.
+
+```php
+$dotTotal = 100;
+
+$this->setDotTotal($dotTotal);
+$this->setDotWidth(40);
+
+for ($i = 0; $i < $dotTotal; $i++) {
+    $this->dot();
+}
+```
+
+Lastly, if you would like to use a different character instead of a dot you can pass the character as a parameter:
+
+```php
+$this->dot('-');
+```

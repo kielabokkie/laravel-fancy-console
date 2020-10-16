@@ -4,59 +4,91 @@ namespace Kielabokkie\FancyConsole\Traits;
 
 trait FancyConsole
 {
+    private $dotTotal;
+    private $dotWidth;
+    private $dotCount = 0;
+
     /**
      * Success line that gets prepended with a colourful SUCCESS.
-     *
-     * @param string $string
-     * @return string
      */
-    public function success($string, $text = 'SUCCESS')
+    public function success(string $message, string $text = 'SUCCESS')
     {
-        return $this->info(
+        $this->info(
             sprintf(
                 '<fg=black;bg=green> %s </> %s',
                 $text,
-                $string
+                $message
             )
         );
     }
 
     /**
      * Fail line that gets prepended with a colourful FAIL.
-     *
-     * @param string $string
-     * @return string
      */
-    public function fail($string, $text = 'FAIL')
+    public function fail(string $message, string $text = 'FAIL')
     {
-        return $this->info(
+        $this->info(
             sprintf(
                 '<fg=white;bg=red> %s </> <fg=red>%s</>',
                 $text,
-                $string
+                $message
             )
         );
     }
 
     /**
      * A green success block that's nicely padded.
-     *
-     * @param string $string
-     * @return string
      */
-    public function successBlock($string)
+    public function successBlock(string $message)
     {
-        return $this->output->success($string);
+        $this->output->success($message);
     }
 
     /**
      * A red error block that's nicely padded.
-     *
-     * @param string $string
-     * @return string
      */
-    public function errorBlock($string)
+    public function errorBlock(string $message)
     {
-        return $this->output->error($string);
+        $this->output->error($message);
+    }
+
+    /**
+     * Add a progress dot but no newline.
+     */
+    public function dot(string $symbol = '.')
+    {
+        $this->dotCount++;
+
+        $text = $symbol;
+        $newline = false;
+
+        if ($this->dotCount % $this->dotWidth === 0) {
+            $text = sprintf(
+                '%s [%s%s]',
+                $symbol,
+                $this->dotCount,
+                $this->dotTotal > 0 ? '/' . $this->dotTotal : ''
+            );
+
+            $newline = true;
+        }
+
+        $this->output->write($text, $newline);
+    }
+
+    /**
+     * Set the max number of progress dots allowed on one line.
+     */
+    public function setDotWidth(int $width): void
+    {
+        $this->dotWidth = $width;
+    }
+
+    /**
+     * Set the total number of progress dots that are expected.
+     */
+    public function setDotTotal(int $total): void
+    {
+        $this->dotTotal = $total;
     }
 }
