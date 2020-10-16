@@ -92,7 +92,7 @@ for ($i = 0; $i < $dotTotal; $i++) {
 }
 ```
 
-Lastly, if you would like to use a different character instead of a dot you can pass the character as a parameter:
+Lastly, if you would like to use a different character instead of a dot, you can pass it as a parameter:
 
 ```php
 $this->dot('-');
